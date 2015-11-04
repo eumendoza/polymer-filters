@@ -2,6 +2,7 @@
   "name": "polymer-filters",
   "version": "0.3.0",
   "authors": [
+    "Addy Osmani <addyosmani@gmail.com>",
     "Eugenio Mendoza <eu.mendoza@gmail.com>"
   ],
   "description": "A collection of Polymer filters for formatting values of expressions.",
@@ -11,7 +12,7 @@
     "web-components"
   ],
   "main": "polymer-filters.html",
-  "license": "MIT",
+  "license": "Apache 2.0",
   "homepage": "https://github.com/eumendoza/polymer-filters/",
   "ignore": [
     "**/.*"
