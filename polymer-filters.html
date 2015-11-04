@@ -7,83 +7,83 @@ A collection of filters for formatting values of [Polymer expressions](http://ww
 
 ####Uppercase
 
-    {{'Hello World' | uppercase}}
+    {{ _uppercase('Hello World') }}
 
 > HELLO WORLD
 
 ####Lowercase
 
-    {{'Hello World' | lowercase}}
+    {{ _lowercase('Hello World') }}
 
 > hello world
 
 ####Reverse
 
-    {{'Hello World' | reverse}}
+    {{ _reverse('Hello World') }}
 
 > dlroW olleH
 
 ####Replace
 
-    {{'Hello World' | replace('World','Peeps')}}
+    {{ _replace('Hello World','World','Peeps') }}
 
 > Hello Peeps
 
 ####LTrim
 
-    {{'    I was a string with leading whitespace' | ltrim}}
+    {{ _ltrim('    I was a string with leading whitespace')}}
 
 > I was a string with leading whitespace
 
 ####RTrim
 
-    {{'I was a string with trailing whitespace    ' | rtrim}}
+    {{ _rtrim('I was a string with trailing whitespace    ')}}
 
 > I was a string with trailing whitespace
 
 ####Trim
 
-    {{' I was a string with leading and trailing whitespace    ' | trim}}
+    {{ _trim(' I was a string with leading and trailing whitespace    ')}}
 
 > I was a string with leading and trailing whitespace
 
 ####Truncate
 
-    {{'Lorem Catsum Itsum' | truncate(8) }}
+    {{ _truncate('Lorem Catsum Itsum', 8) }}
 
 > Lorem...
 
-    {{'Lorem Catsum Itsum' | truncate(8, true) }}
+    {{ truncate('Lorem Catsum Itsum', 8, 1) }}
 
 > Lorem Ca...
 
-    {{'Lorem Catsum Itsum' | truncate(8, true, ' [READ MORE]') }}
+    {{ _truncate('Lorem Catsum Itsum', 8, 1, ' [READ MORE]') }}
 
 > Lorem Ca [READ MORE]
 
 ####Title case
 
-    {{'this is a sentence that was not using title case.' | titlecase}}
+    {{ _titlecase('this is a sentence that was not using title case.') }}
 
 > This Is A Sentence That Was Not Using Title Case.
 
 ####Date
 
-    {{1288323623006 | date('yyyy-MM-dd HH:mm:ss Z')}}
+    {{ _date(1288323623006, 'yyyy-MM-dd HH:mm:ss Z')}}
 
 > 2010-10-29 04:40:23 Z
 
 ####Order an array by the expression predicate
 
-    <template repeat="{{friends | orderBy('age')}}">
-      {{name}}
+    <template is="dom-repeat" items="{{ _orderBy(phones, orderProp) }}" as="phone">
+      {{phone.name}}
     </template>
 
 > Paul Eric Rob Timothy
 
 ####Filter by items starting with a specific letter
 
-    <template repeat="{{friend in friends | startsWith('T')}}">
+    <template is="dom-repeat" items="{{ _startsWith(friends, 'T') }}" as="friend">
       {{ friend.name }}
     </template>
 
@@ -91,8 +91,8 @@ A collection of filters for formatting values of [Polymer expressions](http://ww
 
 ####Limit selection to a specified number of elements
 
-    <template repeat="{{friends | limitTo(2)}}">
-      {{name}}
+    <template is="dom-repeat" items="{{ _limitTo(friends,2) }}" as="friend">
+      {{friend.name}}
     </template>
 
 > Matt
@@ -100,129 +100,129 @@ A collection of filters for formatting values of [Polymer expressions](http://ww
 
 ####Limit displayed items from an array at an offset by a limit
 
-    <template repeat="{{friends | limitFrom(1,2)}}">
-      {{name}}
+    <template is="dom-repeat" items="{{ _limitFrom(friends,1,2) }}" as="friend">
+      {{friend.name}}
     </template>
 
 > Paul
 
 ####Word count
 
-    {{'Hello World' | wordcount}}
+    {{ _wordcount('Hello World') }}
 
 > 2
 
 ####First
 
-    {{ colorsArray | first }}
+    {{ _first(colorsArray) }}
 
 > red
 
 ####Last
 
-    {{ colorsArray | last }}
+    {{ _last(colorsArray) }}
 
 > yellow
 
 ####Random
 
-    {{ colorsArray | random }}
+    {{ _random(colorsArray) }}
 
 > green
 
 ####Length
 
-    {{'Hello World' | length}}
+    {{ _length('Hello World') }}
 
 > 11
 
 ####Rounding
 
-    {{ 45.35 | round }}
+    {{ _round(45.35) }}
 
 > 45
 
-    {{ 45.35 | round(1, 'floor') }}
+    {{ _round(45.35 ,1, 'floor') }}
 
 > 45.3
 
 ####Converting arrays to a list
 
-    {{ arr | list }}
+    {{ _list(arr) }}
 
 > something,somethingelse,etc
 
-    {{ arr | list(" ") }}
+    {{ _list(arr, " ") }}
 
 > something, somethingelse, etc
 
 ####Capitalize
 
-    {{ "Hello World!" | capitalize }}
+    {{ _capitalize("Hello World!") }}
 
 > Hello world!
 
 ####Underscore
 
-    {{ "UserName" | underscore }}
+    {{ _underscore("UserName") }}
 
 > user_name
 
-    {{ "User" | underscore }}
+    {{ _underscore("User") }}
 
 > user
 
 ####Object.keys
 
-    {{{x: 1, y: 2} | objectKeys}}
+    {{ _objectKeys({x: 1, y: 2}) }}
 
 > ["x", "y"]
 
 ####Currency
 
-    {{ 169535.216 | currency }}
+    {{ _currency(169535.216) }}
 
 > $169,535.22
 
-    {{ 169535.216 | currency('USD$') }}
+    {{ _currency(169535.216, 'USD$') }}
 
 > USD$169,535.22
 
-    {{ 169535.216 | currency('USD$', 4) }}
+    {{ _currency(169535.216, 'USD$', 4) }}
 
 > USD$169,535.2160
 
 ####typeof
 
-    {{ 'STRING' | typeof }}
+    {{ _typeof('STRING') }}
 
 > string
 
-    {{ 192.168 | typeof }}
+    {{ _typeof(192.168) }}
 
 > number
 
-    {{ {} | typeof }}
+    {{ _typeof({}) }}
 
 > object
 
-    {{ [] | typeof }}
+    {{ _typeof([]) }}
 
 > array
 
-    {{ error | typeof }}
+    {{ _typeof(error)}}
 
 > error
 
-    {{ regexp | typeof }}
+    {{ _typeof(regexp) }}
 
 > regexp
 
-    {{ undefined | typeof }}
+    {{ _typeof(undefined) }}
 
 > undefined
 
-    {{ null | typeof }}
+    {{ _typeof(null) }}
 
 > null
 
@@ -231,4 +231,3 @@ A collection of filters for formatting values of [Polymer expressions](http://ww
 @homepage http://github.com/addyosmani/polymer-filters
 @inspiration http://jinja.pocoo.org/docs/templates/
 -->
-
