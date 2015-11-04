@@ -1,23 +1,230 @@
-<!doctype html>
-<!--
-Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE
-The complete set of authors may be found at http://polymer.github.io/AUTHORS
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS
--->
+<!DOCTYPE html>
 <html>
 <head>
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-  <script src="../webcomponentsjs/webcomponents.js"></script>
-  <link rel="import" href="../polymer/polymer.html">
-  <link rel="import" href="../core-component-page/core-component-page.html">
+  <title>Demo Polymer Filters</title>
+
+  <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
+  <link rel="import" href="bower_components/polymer/polymer.html">
+
+  <link rel="import" href="polymer-filters.html">
 
 </head>
 <body unresolved>
 
-  <core-component-page></core-component-page>
+<h1>Polymer Filters</h1>
+<h2>A collection of Polymer filters for formatting values of expressions.</h2>
+
+
+    <template is="dom-bind" id="view">
+
+        <h3>uppercase</h3>
+
+        <p>{{ _capitalize(greeting) }}</p>
+
+        <h3>lowercase</h3>
+
+        <p>{{ _lowercase(greeting) }}</p>
+
+        <h3>uppercase</h3>
+
+        <p>{{ _uppercase(greeting) }}</p>
+
+        <h3>reverse</h3>
+        {{ _reverse('Hello World') }}
+
+        <h3>replace('World','Peeps')</h3>
+        {{ _replace('Hello World','World','Peeps') }}
+
+        <h3>truncate(8, 1)</h3>
+        {{ _truncate('Lorem Catsum Itsum', 8, 1) }}
+
+        <h3>titlecase</h3>
+        {{ _titlecase('this is a sentence that was not using title case.') }}
+
+        <h3>startsWith(T)</h3>
+        <template is="dom-repeat" items="{{ _startsWith(friends, 'T') }}" as="friend">
+            {{ friend.name }}
+        </template>
+
+        <h3>date('yyyy-MM-dd HH:mm:ss Z')</h3>
+        {{ _date(1288323623006, 'yyyy-MM-dd HH:mm:ss Z')}}
+
+        <h3>orderBy('age')</h3>
+
+        <ul class="phones">
+            <template is="dom-repeat" items="{{ _orderBy(phones, orderProp) }}" as="phone">
+                <li>
+                    <span><strong>{{phone.name}}</strong> - {{phone.snippet}}</span>
+                </li>
+            </template>
+        </ul>
+
+        <h3>limitTo(2)</h3>
+
+        <ul class="phones">
+            <template is="dom-repeat" items="{{ _limitTo(phones,2) }}" as="phone">
+                <li>
+                    <span><strong>{{phone.name}}</strong> - {{phone.snippet}}</span>
+                </li>
+            </template>
+        </ul>
+
+        <h3>limitFrom(1,2)</h3>
+
+        <ul class="friends">
+            <template is="dom-repeat" items="{{ _limitFrom(friends,1,2) }}" as="friend">
+                <li>
+                    <span><strong>{{friend.name}}</strong> - {{friend.dinner}}</span>
+                </li>
+            </template>
+        </ul>
+
+        <h3>wordcount</h3>
+        {{ _wordcount('Hello World') }}
+
+        <h3>round</h3>
+        {{ _round(45.35) }}
+
+        <h3>round(1, 'floor')</h3>
+        {{ _round(45.35, 1, 'floor') }}
+
+        <h3>first</h3>
+        {{ _first(colors) }}
+
+        <h3>last</h3>
+        {{ _last(colors) }}
+
+        <h3>random</h3>
+        {{ _random(colors) }}
+
+        <h3>length</h3>
+        {{ _length('Hello World') }}
+
+    	<h3>ltrim</h3>
+        {{ _ltrim('    I was a string with leading whitespace') }}
+
+    	<h3>rtrim</h3>
+        {{ _rtrim('I was a string with trailing whitespace    ') }}
+
+        <h3>trim</h3>
+        {{ _trim('    I was a string with leading and trailing whitespace    ') }}
+
+        <h3>list</h3>
+        {{ _list(colors) }}
+
+        <h3>list(" ")</h3>
+        {{ _list(colors," ") }}
+
+        <h3>capitalize</h3>
+        {{ _capitalize(greeting) }}
+
+        <h3>underscore</h3>
+        {{ _underscore('UserName') }}
+
+        <h3>objectKeys</h3>
+        {{ _objectKeys(rating) }}
+
+        <h3>Currency</h3>
+        <h4>Default</h4>
+        {{ _currency(169535.216) }}
+
+        <h4>Custom Currency</h4>
+        {{ _currency(169535.216,'USD$') }}
+
+        <h4>Custom Decimal point</h4>
+        {{ _currency(169535.216, 'USD$', 4) }}
+
+        <h3>typeof</h3>
+        <h4>String</h4>
+        {{ _typeof('STRING') }}
+
+        <h4>Number</h4>
+        {{ _typeof(192.168) }}
+
+        <h4>Object</h4>
+        {{ _typeof(rating) }}
+
+        <h4>Array</h4>
+        {{ _typeof(colors) }}
+
+        <h4>Error</h4>
+        {{ _typeof(error) }}
+
+        <h4>RegExp</h4>
+        {{ _typeof(regexp) }}
+
+        <h4>Undefined</h4>
+        {{ _typeof(undefined) }}
+
+        <h4>Null</h4>
+        {{ _typeof(null) }}
+
+    </template>
+
+    <script>
+
+        var app = document.querySelector('#view');
+
+        app.phones = [
+            {'name':'Nexus S','snippet':'Fast just got faster with Nexus S.','age':1},
+            {'name':'Motorola XOOM with Wi-Fi','snippet':'The Next, Next Generation tablet.','age':2},
+            {'name':'MOTOROLA XOOM','snippet':'The Next, Next Generation tablet.','age':3}
+        ];
+        app.orderProp = 'age';
+        app.colors = ['red','green','blue','yellow'];
+        app.greeting = 'Hello World';
+        app.friends = [{
+            name: 'Matt',
+            dinner: 'pizza'
+          }, {
+            name: 'Thomas',
+            dinner: 'paella'
+          }, {
+            name: 'Paul',
+            dinner: 'sushi'
+          }, {
+            name: 'Eric',
+            dinner: 'hummus'
+          }, {
+            name: 'Rob',
+            dinner: 'burger'
+          }, {
+            name: 'Timothy',
+            dinner: 'pasta'
+          }];
+        app.rating = {good:1, bad:2, none:0};
+        app.regexp = new RegExp(/a-z/);
+        app.error = new Error();
+
+        app._capitalize = PolymerFilters._capitalize;
+        app._currency = PolymerFilters._currency;
+        app._date = PolymerFilters._date;
+        app._first = PolymerFilters._first;
+        app._last = PolymerFilters._last;
+        app._length = PolymerFilters._length;
+        app._limitFrom = PolymerFilters._limitFrom;
+        app._limitTo = PolymerFilters._limitTo;
+        app._list = PolymerFilters._list;
+        app._lowercase = PolymerFilters._lowercase;
+        app._ltrim = PolymerFilters._ltrim;
+        app._objectKeys = PolymerFilters._objectKeys;
+        app._orderBy = PolymerFilters._orderBy;
+        app._random = PolymerFilters._random;
+        app._replace = PolymerFilters._replace;
+        app._reverse = PolymerFilters._reverse;
+        app._round = PolymerFilters._round;
+        app._rtrim = PolymerFilters._rtrim;
+        app._startsWith = PolymerFilters._startsWith;
+        app._titlecase = PolymerFilters._titlecase;
+        app._trim = PolymerFilters._trim;
+        app._truncate = PolymerFilters._truncate;
+        app._typeof = PolymerFilters._typeof;
+        app._underscore = PolymerFilters._underscore;
+        app._uppercase = PolymerFilters._uppercase;
+        app._wordcount = PolymerFilters._wordcount;
+
+    </script>
 
 </body>
 </html>
