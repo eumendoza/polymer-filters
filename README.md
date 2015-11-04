@@ -1,8 +1,6 @@
 polymer-filters
 ================
 
-> A collection of Polymer filters for formatting values of expressions for display to users
+> A collection of Polymer filters for formatting values of templates for display to users
 
-See the [component page](http://addyosmani.github.io/polymer-filters) for more information.
-
-
+See the index.html page for more information and how to use in an easy way.
