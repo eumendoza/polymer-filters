@@ -524,6 +524,29 @@
 		_wordcount: function(input) {
 			var words = (input) ? input.match(/\w+/g) : null;
 			return (words) ? words.length : null;
+		},
+
+		/**
+		 * Serializes input into a JSON-formatted string
+		 * @param  {object} object
+		 * @param  {number} spacing
+		 * @return {string}
+		 */
+		_json: function(object, spacing) {
+
+			function toJson(obj, pretty) {
+				if (typeof obj === 'undefined') return undefined;
+				if (isNaN(pretty)) {
+					pretty = pretty ? 2 : null;
+				}
+				return JSON.stringify(obj, null, pretty);
+			}
+
+			if (typeof spacing === 'undefined') {
+				spacing = 2;
+			}
+			
+			return toJson(object, spacing);
 		}
 	};
 

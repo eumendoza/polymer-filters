@@ -160,6 +160,12 @@
         <h4>Null</h4>
         {{ _typeof(null) }}
 
+        <h4>_json(rating,0)</h4>
+        {{ _json(rating,0) }}
+
+        <h4>_json(rating,2)</h4>
+        {{ _json(rating,2) }}
+
     </template>
 
     <script>
@@ -223,7 +229,8 @@
         app._underscore = PolymerFilters._underscore;
         app._uppercase = PolymerFilters._uppercase;
         app._wordcount = PolymerFilters._wordcount;
-
+        app._json = PolymerFilters._json;
+        
     </script>
 
 </body>

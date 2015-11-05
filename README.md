@@ -21,4 +21,8 @@ bower install -save polymer-efilters
 
 # Demo
 
-See the [index.html](https://github.com/eumendoza/polymer-filters/blob/master/index.html) page for more information and how to use in an easy way.
+See the [index.html](https://github.com/eumendoza/polymer-filters/blob/master/index.html) page for more information.
+
+# Other Demo (Polymer project)
+
+See the [films-service.html](https://github.com/eumendoza/polymerFilmsApp/blob/master/elements/film/films-service.html) or [tv-service.html](https://github.com/eumendoza/polymerFilmsApp/blob/master/elements/tv/tv-service.html) and how to use in an easy way.

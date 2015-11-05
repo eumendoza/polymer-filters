@@ -226,6 +226,16 @@ A collection of filters for formatting values of Polymer 1.x.x templates for dis
 
 > null
 
+####json
+
+    {{ _json(rating, 0) }}
+
+>   {"good":1,"bad":2,"none":0}
+
+    {{ _json(rating, 2) }}
+
+>   { "good": 1, "bad": 2, "none": 0 }
+
 @element polymer-efilters
 @blurb A collection of Polymer filters for formatting values of expressions for display to users
 @homepage http://github.com/eumendoza/polymer-filters
